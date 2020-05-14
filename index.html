@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>COCO</title>
+  </head>
+  <body>
+    <button id="searchKitty">Click me</button>
+
+    <script>
+      let button;
+
+      function getKitty() {
+        fetch('https://api.thecatapi.com/v1/images/search').then(resp => resp.json()).then(resp => {
+          let kittyUrl = resp[0].url;
+          let img = document.createElement('img');
+          img.src = kittyUrl;
+          document.getElementsByTagName('body')[0].appendChild(img);
+        })
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        button = document.getElementById('searchKitty');
+        button.addEventListener('click', getKitty);
+      });
+    </script>
+  </body>
+</html>
